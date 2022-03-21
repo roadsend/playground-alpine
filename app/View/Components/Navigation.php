@@ -19,7 +19,7 @@ class Navigation extends Component
         $files = collect(Storage::drive('views')->files('pages'));
         $this->pages = $files
             ->map(fn ($page) => (string) str($page)->between('pages/', '.blade'))
-            ->mapWithKeys(fn ($page) => [(string) str($page)->title() => route($page)]);
+            ->mapWithKeys(fn ($page) => [(string) str($page)->title()->replace('_', ' ') => route($page)]);
     }
 
     /**
